@@ -55,5 +55,35 @@ namespace IARA
             rdr.Close();
             conn.Close();
         }
+        bool mouseDown = false;
+        Point startMousePos;
+        private void TopPanel_MouseDown(object sender, MouseEventArgs e)
+        {
+            mouseDown = true;
+            startMousePos = e.Location;
+        }
+
+        private void TopPanel_MouseMove(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void TopPanel_MouseUp(object sender, MouseEventArgs e)
+        {
+            mouseDown = false;
+        }
+
+        private void TopPanel_MouseMove_1(object sender, MouseEventArgs e)
+        {
+            if (mouseDown)
+            {
+                this.Location = new Point((this.Location.X - startMousePos.X) + e.X, (this.Location.Y - startMousePos.Y) + e.Y);
+            }
+        }
+
+        private void TopPanel_MouseUp_1(object sender, MouseEventArgs e)
+        {
+            mouseDown = false;
+        }
     }
 }
